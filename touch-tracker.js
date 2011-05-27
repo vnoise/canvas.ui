@@ -109,7 +109,7 @@ var TouchTracker = new Class({
             this.bubbleEvent(target, event);
         }
         else {
-            this.scrollManager.onTouchDown(event);
+            // this.scrollManager.onTouchDown(event);
         }
     },
 

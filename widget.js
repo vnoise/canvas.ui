@@ -193,14 +193,24 @@ var Widget = new Class({
         }
     },
 
+    listen: function() {
+        this.controller.addEvent.apply(this.controller, arguments);
+    },
+
+    send: function() {
+        this.controller.send.apply(this.controller, arguments);
+    },
+
     add: function(options) {
         var type = options.type || Widget;
 
-        options._parent = this;
+        if (!options.controller) {
+            options.controller = this.controller;
+        }
 
         var child = new type.prototype.$constructor(options);
 
-        this.children.push(child);
+        this.append(child);
 
         return child;
     },
@@ -238,10 +248,6 @@ var Widget = new Class({
             }    
         }
         return null;
-    },
-
-    updateTransform: function() {
-        
     },
 
     pos: function(x, y) {

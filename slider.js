@@ -2,7 +2,7 @@ var Slider = new Class({
     Extends: Widget,
 
     initialize: function(options) {
-        this.value = 0;
+        this._value = 0;
         this.handleSize = 20;
         this.handlePos = 0;
         this.min = 0;
@@ -15,30 +15,34 @@ var Slider = new Class({
     drawCanvas: function(context) {
         context.fillStyle = "#00f";
         context.fillRect(0, 0, this.width(), this.height());
-
         context.fillStyle = "#f00";
         context.font = "20px Helvetica";
         context.fillText(this.label, 2, this.height() - 40, this.width() - 20)
         context.fillRect(0, this.handlePos, this.width(), this.handleSize);
     },
 
-    setValue: function(value) {
-        this.value = Math.max(this.min, Math.min(this.max, value));
+    value: function(value) {
+        if (value === undefined) {
+            return this._value;
+        }
+        else {
+            this._value = Math.max(this.min, Math.min(this.max, value));
 
-        var position = 
-            (this.height() - this.handleSize) * 
-            ((this.value - this.min) / (this.max - this.min));
+            var position = 
+                (this.height() - this.handleSize) * 
+                ((this._value - this.min) / (this.max - this.min));
 
 
-        this.handlePos = this.height() - this.handleSize - position;
+            this.handlePos = this.height() - this.handleSize - position;
+        }
     },
 
     handleEvent: function(event) {    
         var value = this.min + ((this.height() - event.localY) / this.height()) * (this.max - this.min);
 
-        if (value != this.value) {
-            this.setValue(value);
-            this.fireEvent("change", this.value);
+        if (value != this._value) {
+            this.value(value);
+            this.fireEvent("change", this._value);
         }
     },
 
