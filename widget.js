@@ -162,6 +162,7 @@ var Widget = new Class({
         context.translate(this.x(), this.y());
 
         this.drawCanvas(context);
+
         this.children.each(function(child) {
             child.draw(context);
         });
@@ -250,7 +251,6 @@ var Widget = new Class({
         else {
             this._x = x;
             this._y = y;
-            this.updateTransform();
             return this;
         }
     },
@@ -264,7 +264,6 @@ var Widget = new Class({
             this._y = y;
             this._width = w;
             this._height = h;
-            this.updateTransform();
             return this;
         }
     },
@@ -276,7 +275,6 @@ var Widget = new Class({
         else {
             this._width = w;
             this._height = h;
-            this.updateTransform();
             return this;
         }
     },
