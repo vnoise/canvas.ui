@@ -17,14 +17,18 @@ var Slider = new Class({
     drawCanvas: function(context) {
         var position = (this.height - this.handleSize) * 
                 ((this._value - this.min) / (this.max - this.min));
+
         this.handlePos = this.height - this.handleSize - position;        
 
         context.fillStyle = this.bgColor;
         context.fillRect(0, 0, this.width, this.height);
+
         context.fillStyle = this.fgColor;
+        context.fillRect(0, this.handlePos, this.width, this.handleSize);
+
+        context.fillStyle = this.fontColor;
         context.font = "20px Helvetica";
         context.fillText(this.label, 2, this.height - 40, this.width - 20)
-        context.fillRect(0, this.handlePos, this.width, this.handleSize);
     },
 
     value: function(value) {
