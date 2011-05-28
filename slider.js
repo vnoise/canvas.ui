@@ -14,11 +14,11 @@ var Slider = new Class({
 
     drawCanvas: function(context) {
         context.fillStyle = "#00f";
-        context.fillRect(0, 0, this.width(), this.height());
+        context.fillRect(0, 0, this.width, this.height);
         context.fillStyle = "#f00";
         context.font = "20px Helvetica";
-        context.fillText(this.label, 2, this.height() - 40, this.width() - 20)
-        context.fillRect(0, this.handlePos, this.width(), this.handleSize);
+        context.fillText(this.label, 2, this.height - 40, this.width - 20)
+        context.fillRect(0, this.handlePos, this.width, this.handleSize);
     },
 
     value: function(value) {
@@ -67,8 +67,8 @@ var ToggleButton = new Class({
 
     draw: function() {
         this.attr('class', 'menu-button');
-        this.rect(0, 0, this.width(), this.height(), 0, 0);
-        this.text(5, this.height() / 2 + 4, this.label, { 'class': 'label' });
+        this.rect(0, 0, this.width, this.height, 0, 0);
+        this.text(5, this.height / 2 + 4, this.label, { 'class': 'label' });
     },
 
     toggle: function() {

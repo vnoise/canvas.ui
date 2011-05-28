@@ -67,7 +67,7 @@ var TouchTracker = new Class({
         var x = event.pageX - widget.pageX();
         var y = event.pageY - widget.pageY();
 
-        return x >= 0 && x <= widget.width() && y >= 0 && y <= widget.height();
+        return x >= 0 && x <= widget.width && y >= 0 && y <= widget.height;
     },
 
     findTarget: function(widget, event) {
