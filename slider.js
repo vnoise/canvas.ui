@@ -8,6 +8,8 @@ var Slider = new Class({
         this.min = 0;
         this.max = 1;
         this.label = "";
+        this.fgColor = "#ccc";
+        this.bgColor = "#333";
 
         Widget.prototype.initialize.call(this, options);
     },
@@ -16,9 +18,10 @@ var Slider = new Class({
         var position = (this.height - this.handleSize) * 
                 ((this._value - this.min) / (this.max - this.min));
         this.handlePos = this.height - this.handleSize - position;        
-        context.fillStyle = "#00f";
+
+        context.fillStyle = this.bgColor;
         context.fillRect(0, 0, this.width, this.height);
-        context.fillStyle = "#f00";
+        context.fillStyle = this.fgColor;
         context.font = "20px Helvetica";
         context.fillText(this.label, 2, this.height - 40, this.width - 20)
         context.fillRect(0, this.handlePos, this.width, this.handleSize);
@@ -49,49 +52,6 @@ var Slider = new Class({
 
     onTouchMove: function(event) {
         this.handleEvent(event);
-        return true;
-    }
-});
-
-var VolumeSlider = new Class({
-    Extends: Slider,
-
-    initialize: function(options) {
-        this.levelValue = 0;
-
-        Slider.prototype.initialize.call(this, options);
-        console.log("Vol INIT")
-    },
-
-    drawCanvas: function(context) {
-        Slider.prototype.drawCanvas.call(this, context);   
-        context.fillStyle = "rgba(255,255,255,0.5)";
-        context.fillRect(0, this.height, this.width, (this.height * this.levelValue)*-1);
-         
-    }
-});
-
-var ToggleButton = new Class({
-    Extends: Widget,
-
-    initialize: function(options) {
-        Widget.prototype.initialize.call(this, options);
-        this.active = true;
-    },
-
-    draw: function() {
-        this.attr('class', 'menu-button');
-        this.rect(0, 0, this.width, this.height, 0, 0);
-        this.text(5, this.height / 2 + 4, this.label, { 'class': 'label' });
-    },
-
-    toggle: function() {
-        this.active = !this.active;
-        this.callback(this);
-    },
-
-    onTouchDown: function(event) {
-        this.toggle();
         return true;
     }
 });

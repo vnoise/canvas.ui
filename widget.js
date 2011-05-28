@@ -22,9 +22,7 @@ var Widget = new Class({
         this.set(options);
 
         if (!this._parent) {
-            this.touchtracker = new TouchTracker(this);
-
-            setInterval(this.draw.bind(this), 50);
+            this.initCanvas();
         }
     },
 
@@ -61,6 +59,10 @@ var Widget = new Class({
             break;
         }
 
+        this.layoutChildren();
+    },
+
+    layoutChildren: function() {
         this.children.each(function(child) {
             child.doLayout();
         });
@@ -125,6 +127,15 @@ var Widget = new Class({
         });
     },
 
+    initCanvas: function() {
+        this.canvas = document.createElement('canvas');
+        this.touchtracker = new TouchTracker(this);
+
+        document.body.appendChild(this.canvas);
+
+        setInterval(this.draw.bind(this), 50);
+    },
+
     drawCanvas: function(context) {
     },
 
@@ -134,11 +145,6 @@ var Widget = new Class({
         }
 
         if (context === undefined) {
-            if (!this.canvas) {
-                this.canvas = document.createElement('canvas');
-                document.body.appendChild(this.canvas);
-            }
-
             this.canvas.setAttribute("width", window.innerWidth);
             this.canvas.setAttribute("height", window.innerHeight);
             this.width = window.innerWidth;
@@ -148,25 +154,23 @@ var Widget = new Class({
             context = this.canvas.getContext("2d");
             context.clearRect(0, 0, this.width, this.height);
 
-            this.children.each(function(child) {
-                child.draw(context);
-            });
+            this.drawChildren(context);
         }
         else {
             context.save();
             context.translate(this.x, this.y);
 
             this.drawCanvas(context);
-
-            this.children.each(function(child) {
-                child.draw(context);
-            });
+            this.drawChildren(context);
 
             context.restore();
         }
     },
 
     drawChildren: function(context) {
+        this.children.each(function(child) {
+            child.draw(context);
+        });
     },
 
     redraw: function() {
