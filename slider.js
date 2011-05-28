@@ -5,6 +5,7 @@ var Slider = new Class({
         this._value = 0;
         this.handleSize = 20;
         this.handlePos = 0;
+        this.lastEventTime = 0;
         this.min = 0;
         this.max = 1;
         this.label = "";
@@ -44,6 +45,7 @@ var Slider = new Class({
         var value = this.min + ((this.height - event.localY) / this.height) * (this.max - this.min);
 
         if (value != this._value) {
+            this.lastEventTime = Number(new Date());
             this.value(value);
             this.fireEvent("change", this._value);
         }

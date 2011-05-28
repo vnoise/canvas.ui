@@ -71,7 +71,7 @@ var TouchTracker = new Class({
     },
 
     findTarget: function(widget, event) {
-        if (this.eventInside(widget, event)) {
+        if (widget.visible && this.eventInside(widget, event)) {
             for (var i = widget.children.length - 1; i >= 0; i--) {
                 var target = this.findTarget(widget.children[i], event);
                 if (target) {

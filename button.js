@@ -2,7 +2,7 @@ var Label = new Class({
     Extends: Widget,
 
     initialize: function(options) {
-        this.label = null;
+        this.label = "";
 
         Widget.prototype.initialize.call(this, options);
     },
@@ -10,7 +10,7 @@ var Label = new Class({
     drawCanvas: function(context) {
         context.fillStyle = this.fontColor;
         context.font = "20px Helvetica";
-        context.fillText(this.label, 2, this.height - 40, this.width - 20);
+        context.fillText(this.label, 2, this.height / 2);
     },
 
     onTouchDown: function(event) {
@@ -35,7 +35,7 @@ var Button = new Class({
         context.fillRect(0, 0, this.width, this.height);
         context.fillStyle = this.fontColor;
         context.font = "20px Helvetica";
-        context.fillText(this.label, 2, this.height - 40, this.width - 20);
+        context.fillText(this.label, 2, this.height / 2);
     },
 
     onTouchDown: function(event) {
