@@ -11,6 +11,7 @@ var Widget = new Class({
         this._y = 0;
         this._width = 0;
         this._height = 0;
+        this.visible = true;
 
         this.marginTop = 0;
         this.marginBottom = 0;
@@ -19,6 +20,12 @@ var Widget = new Class({
 
         this.sizeHint = 1; 
         this.set(options);
+
+        if (!this._parent) {
+            this.touchtracker = new TouchTracker(this);
+
+            setInterval(this.draw.bind(this), 50);
+        }
     },
 
     on: function(event, callback) {
@@ -158,6 +165,10 @@ var Widget = new Class({
     },
 
     draw: function(context) {
+        if (!this.visible) {
+            return;
+        }
+
         if (context === undefined) {
             if (this.canvas) {
                 this.doLayout();
@@ -225,21 +236,15 @@ var Widget = new Class({
             options.controller = this.controller;
         }
 
-        var child = new type.prototype.$constructor(options);
-
-        this.append(child);
-
-        return child;
-    },
-
-    append: function(widget) {
-        this.children.push(widget);
-
-        if (widget._parent) {
-            widget._parent.remove(widget);
+        if (!options._parent) {
+            options._parent = this;
         }
 
-        widget._parent = this;
+        var child = new type.prototype.$constructor(options);
+
+        this.children.push(child);
+
+        return child;
     },
 
     find: function(id) {

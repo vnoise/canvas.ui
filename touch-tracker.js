@@ -1,6 +1,7 @@
 var TouchTracker = new Class({
 
-    initialize: function(controller) {
+    initialize: function(root) {
+        this.root = root;
         this.touchModel = null;
         this.touches = {};
 
@@ -44,10 +45,6 @@ var TouchTracker = new Class({
         document.ongesturechange = function(e) { e.preventDefault(); };
         document.ongesturestart = function(e) { e.preventDefault(); };
 
-        this.controller = controller;
-        this.root = controller.root;
-        this.svg = controller.svg;
-        
         document.addEventListener(this.event.down, this.onTouchDown.bind(this), false);
         document.addEventListener(this.event.move, this.onTouchMove.bind(this), false);
         document.addEventListener(this.event.up, this.onTouchUp.bind(this), false);
