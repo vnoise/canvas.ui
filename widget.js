@@ -318,19 +318,19 @@ var Widget = new Class({
 
     pageX: function() {
         if (this._parent) {
-            return this._parent.pageX() + this.x();
+            return this._parent.pageX() + this._x;
         }
         else {
-            return this.x();
+            return this._x;
         }
     },
 
     pageY: function() {
         if (this._parent) {
-            return this._parent.pageY() + this.y();
+            return this._parent.pageY() + this._y;
         }
         else {
-            return this.y();
+            return this._y;
         }
     }
 
