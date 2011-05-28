@@ -34,4 +34,6 @@ var Button = new Class({
         this.fireEvent("click", this._state);
         return true;
     }
+
 });
+
