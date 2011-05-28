@@ -20,18 +20,18 @@ Following simple example assumes a canvas element in a html document:
 
 <pre>
 
-<html>
-  <head>
-    <script src="/canvas.ui/mootools.js" type="text/javascript"></script>
-    <script src="/canvas.ui/touch-tracker.js" type="text/javascript"></script>
-    <script src="/canvas.ui/widget.js" type="text/javascript"></script>
-    <script src="/canvas.ui/slider.js" type="text/javascript"></script>
-    <script src="/app.js" type="text/javascript"></script>
-  </head>
-  <body onLoad="onLoad()" style="background:#000;margin:0">
-    <canvas id="canvas" width="800" height="600"></canvas>
-  </body>
-</html>
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;script src="/canvas.ui/mootools.js" type="text/javascript"&gt;&lt;/script&gt;
+    &lt;script src="/canvas.ui/touch-tracker.js" type="text/javascript"&gt;&lt;/script&gt;
+    &lt;script src="/canvas.ui/widget.js" type="text/javascript"&gt;&lt;/script&gt;
+    &lt;script src="/canvas.ui/slider.js" type="text/javascript"&gt;&lt;/script&gt;
+    &lt;script src="/app.js" type="text/javascript"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body onLoad="onLoad()" style="background:#000;margin:0"&gt;
+    &lt;canvas id="canvas" width="800" height="600"&gt;&lt;/canvas&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
 
 </pre>
 
