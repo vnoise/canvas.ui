@@ -7,6 +7,15 @@ var Button = new Class({
 
         Widget.prototype.initialize.call(this, options);
     },
+    
+    state: function(state) {
+        if (state === undefined) {
+            return this._state;
+        }
+        else {
+            this._state = state;
+        }
+    },
 
     drawCanvas: function(context) {
         if (this._state == false){
