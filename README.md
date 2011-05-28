@@ -19,6 +19,7 @@ Usage
 Following simple example assumes a canvas element in a html document:
 
 <pre>
+
 <html>
   <head>
     <script src="/canvas.ui/mootools.js" type="text/javascript"></script>
@@ -31,6 +32,7 @@ Following simple example assumes a canvas element in a html document:
     <canvas id="canvas" width="800" height="600"></canvas>
   </body>
 </html>
+
 </pre>
 
 Let's just create a root widget and add a slider with the label 'Pitch'.
@@ -38,6 +40,7 @@ Let's just create a root widget and add a slider with the label 'Pitch'.
 The slider fires the change event, so we can pass an event handler to the constructor.
 
 <pre>
+
 function onLoad() {
         var widget = new Widget({
             canvas: document.getElementById('canvas'),
@@ -56,4 +59,5 @@ function onLoad() {
             }
         });
 }
+
 </pre> 
