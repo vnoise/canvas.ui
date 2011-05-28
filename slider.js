@@ -13,6 +13,9 @@ var Slider = new Class({
     },
 
     drawCanvas: function(context) {
+        var position = (this.height - this.handleSize) * 
+                ((this._value - this.min) / (this.max - this.min));
+        this.handlePos = this.height - this.handleSize - position;        
         context.fillStyle = "#00f";
         context.fillRect(0, 0, this.width, this.height);
         context.fillStyle = "#f00";
@@ -27,18 +30,11 @@ var Slider = new Class({
         }
         else {
             this._value = Math.max(this.min, Math.min(this.max, value));
-
-            var position = 
-                (this.height() - this.handleSize) * 
-                ((this._value - this.min) / (this.max - this.min));
-
-
-            this.handlePos = this.height() - this.handleSize - position;
         }
     },
 
     handleEvent: function(event) {    
-        var value = this.min + ((this.height() - event.localY) / this.height()) * (this.max - this.min);
+        var value = this.min + ((this.height - event.localY) / this.height) * (this.max - this.min);
 
         if (value != this._value) {
             this.value(value);
@@ -54,6 +50,24 @@ var Slider = new Class({
     onTouchMove: function(event) {
         this.handleEvent(event);
         return true;
+    }
+});
+
+var VolumeSlider = new Class({
+    Extends: Slider,
+
+    initialize: function(options) {
+        this.levelValue = 0;
+
+        Slider.prototype.initialize.call(this, options);
+        console.log("Vol INIT")
+    },
+
+    drawCanvas: function(context) {
+        Slider.prototype.drawCanvas.call(this, context);   
+        context.fillStyle = "rgba(255,255,255,0.5)";
+        context.fillRect(0, this.height, this.width, (this.height * this.levelValue)*-1);
+         
     }
 });
 
