@@ -158,16 +158,33 @@ var Widget = new Class({
     },
 
     draw: function(context) {
-        context.save();
-        context.translate(this.x(), this.y());
+        if (context === undefined) {
+            if (this.canvas) {
+                this.doLayout();
 
-        this.drawCanvas(context);
+                context = this.canvas.getContext("2d");
+                context.clearRect(0, 0, this.width, this.height);
 
-        this.children.each(function(child) {
-            child.draw(context);
-        });
+                this.children.each(function(child) {
+                    child.draw(context);
+                });
+            }
+            else {
+                throw "no context or canvas given";
+            }
+        }
+        else {
+            context.save();
+            context.translate(this.x(), this.y());
 
-        context.restore();
+            this.drawCanvas(context);
+
+            this.children.each(function(child) {
+                child.draw(context);
+            });
+
+            context.restore();
+        }
     },
 
     drawChildren: function(context) {
