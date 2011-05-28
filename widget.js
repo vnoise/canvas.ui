@@ -115,7 +115,7 @@ var Widget = new Class({
         var x = 0;
         var y = 0;
         var w = this.width;
-        var h = (this.height() - this.sumVerticalMargins()) / this.sumSizeHints();
+        var h = (this.height - this.sumVerticalMargins()) / this.sumSizeHints();
 
         this.children.each(function(child) {
             y += child.marginTop;
